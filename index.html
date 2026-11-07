@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn your photos into a polished PDF in a few clicks.">
+  <title>Papertrail | Photos to PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Papertrail home">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span>papertrail</span>
+    </a>
+    <div class="top-note"><span class="status-dot"></span> runs in your browser</div>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">A quieter way to scan</p>
+      <h1>Photos in.<br><em>Paperwork out.</em></h1>
+      <p class="lede">Drop in your photos and leave with one clean, shareable PDF. Nothing gets uploaded.</p>
+    </section>
+    <section class="workspace" aria-label="Photo to PDF workspace">
+      <div class="upload-panel" id="dropzone">
+        <div class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14.5v3A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h2>Drop photos here</h2>
+        <p>or choose files from your device</p>
+        <label class="button primary" for="file-input">Browse photos</label>
+        <input id="file-input" type="file" accept="image/*" multiple hidden>
+        <span class="format-note">JPG, PNG, WEBP · up to 30 images</span>
+      </div>
+      <div class="queue-panel">
+        <div class="queue-head"><div><p class="eyebrow">Your document</p><h2><span id="photo-count">0</span> photos <span class="muted">/</span> <span id="page-count">0</span> pages</h2></div><button class="text-button" id="clear-button" type="button" disabled>Clear all</button></div>
+        <div class="empty-state" id="empty-state"><div class="empty-stack"><span></span><span></span><span></span></div><p>Your photos will appear here</p></div>
+        <div class="photo-grid" id="photo-grid" aria-live="polite"></div>
+        <p class="hint" id="queue-hint">Tip: drag cards to change their order</p>
+      </div>
+    </section>
+    <section class="settings" aria-label="PDF settings">
+      <div class="setting-group"><span class="setting-label">Page size</span><div class="segmented" role="group" aria-label="Page size"><button class="seg active" data-size="a4" type="button">A4</button><button class="seg" data-size="letter" type="button">Letter</button><button class="seg" data-size="fit" type="button">Fit image</button></div></div>
+      <div class="setting-group"><span class="setting-label">Orientation</span><div class="segmented" role="group" aria-label="Orientation"><button class="seg active" data-orientation="portrait" type="button"><span class="orientation-icon portrait"></span>Portrait</button><button class="seg" data-orientation="landscape" type="button"><span class="orientation-icon landscape"></span>Landscape</button></div></div>
+      <button class="button download" id="download-button" type="button" disabled><span>Make PDF</span><span class="arrow">↗</span></button>
+    </section>
+    <p class="privacy-line"><span class="lock">⌁</span> Your images never leave this browser</p>
+  </main>
+  <footer><span>papertrail / 2026</span><span>private by default</span></footer>
+</body>
+</html>
